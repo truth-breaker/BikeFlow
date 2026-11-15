@@ -25,8 +25,43 @@ body {
 
 
 }
+
+
+
+#map svg circle,
+.legend div {
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+
+    --color: color-mix(
+        in oklch,
+        var(--color-departures) calc(100% * var(--departure-ratio)),
+        var(--color-arrivals)
+    );
+}
 #map svg circle {
-    fill: steelblue;
+    fill: var(--color);
     fill-opacity: 60%;
     stroke: white;
+    pointer-events: auto;
+}
+.legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+    margin-block: 1em;
+}
+
+.legend div {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+}
+.legend div::before {
+    content: "";
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    background-color: var(--color);
 }
